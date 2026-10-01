@@ -5,7 +5,7 @@
         public string Username { get; private set; } = null!;
         public string Password { get; private set; } = null!;
 
-        public ICollection<Tasks> Tasks { get; set; } = [];
+        public ICollection<DailyTask> Tasks { get; set; } = [];
 
         public User(string username, string password)
         {
@@ -17,11 +17,11 @@
 
         private void ValidateUsername(string username)
         {
-            if (username.Length > 50)
-                throw new Exception("");
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException("Username is required.", nameof(username));
 
-            if(string.IsNullOrWhiteSpace(username))
-                throw new Exception("");
+            if (username.Length > 50)
+                throw new ArgumentException("Username cannot be more than 50 characters.", nameof(username));
 
         }
     }

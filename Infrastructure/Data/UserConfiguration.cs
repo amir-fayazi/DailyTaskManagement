@@ -16,12 +16,17 @@ namespace DailyTaskManagement.Infrastructure.Data
             builder.Property(u => u.Username)
                 .HasMaxLength(50)
                 .IsRequired();
+                
+            builder.HasIndex(u => u.Username)
+                 .IsUnique();
 
             builder.Property(u => u.Password)
                 .IsRequired();
 
             builder.Property(t => t.CreatedAt)
                    .HasDefaultValueSql("GETDATE()");
+
+            
         }
     }
 

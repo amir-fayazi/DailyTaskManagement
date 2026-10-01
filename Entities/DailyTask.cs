@@ -4,7 +4,7 @@ using DailyTaskManagement.Enums;
 
 namespace DailyTaskManagement.Entities
 {
-    public class Tasks : BaseEntity
+    public class DailyTask : BaseEntity
     {
         public string Title { get; private set; } = null!;
         public StatusEnum Status { get; set; } 
@@ -14,20 +14,23 @@ namespace DailyTaskManagement.Entities
         public int UserId { get; set; }
 
 
-        public Tasks(string title)
+        public DailyTask(int userId, string title, StatusEnum status, PriorityEnum priority)
         {
             ValidateTitle(title);
 
+            UserId = userId;
             Title = title;
+            Status = status;
+            Priority = priority;
         }
 
         private void ValidateTitle(string title)
         {
-            if (title.Length > 100)
-                throw new Exception("");
-
             if (string.IsNullOrWhiteSpace(title))
-                throw new Exception("");
+                throw new ArgumentException("Title is required.", nameof(title));
+
+            if (title.Length > 100)
+                throw new ArgumentException( "Title cannot be more than 100 characters.",nameof(title));
 
         }
     }

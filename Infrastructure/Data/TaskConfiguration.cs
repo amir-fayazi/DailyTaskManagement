@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DailyTaskManagement.Infrastructure.Data
 {
-    public class TaskConfiguration : IEntityTypeConfiguration<Tasks>
+    public class TaskConfiguration : IEntityTypeConfiguration<DailyTask>
     {
-        public void Configure(EntityTypeBuilder<Tasks> builder)
+        public void Configure(EntityTypeBuilder<DailyTask> builder)
         {
             builder.Property(t => t.Status)
                 .HasConversion<int>();
